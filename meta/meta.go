@@ -12,10 +12,10 @@ type Meta struct {
 	PageCount  int `json:"page_count"`
 }
 
-func New(page, perPage, total int) (*Meta, error) {
+func New(page, perPage, total int, pagLimitDef string) (*Meta, error) {
 	if perPage <= 0 {
 		var err error
-		perPage, err = strconv.Atoi(os.Getenv("PAGINATOR_LIMIT_DEFAULT"))
+		perPage, err = strconv.Atoi(os.Getenv(pagLimitDef))
 		if err != nil {
 			return nil, err
 		}
